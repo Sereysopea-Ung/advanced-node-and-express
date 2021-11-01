@@ -10,3 +10,7 @@ $(document).ready(function () {
     return false; // prevent form submit from refreshing page
   });
 });
+
+socket.on('user count', function(data) {
+  console.log(data);
+});
