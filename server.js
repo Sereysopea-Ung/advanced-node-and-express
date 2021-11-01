@@ -43,7 +43,7 @@ io.use(
   })
 );
 
-console.log('user ' + socket.request.user.name + ' connected');
+
 
 fccTesting(app); //For FCC testing purposes
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -85,6 +85,7 @@ myDB(async client=>{
 
   let currentUsers = 0;
   io.on('connection', socket => {
+    console.log('user ' + socket.request.user.name + ' connected');
     currentUsers ++;
     io.emit('user count', currentUsers);
     console.log('A user has connected');
