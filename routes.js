@@ -30,7 +30,7 @@ module.exports = function (app, myDataBase) {
      });
 
      app.route('/chat').get(ensureAuthenticated, (req,res)=>{
-       req.render(process.cwd()+'/views/pug/chat',{
+       res.render(process.cwd()+'/views/pug/chat',{
          user: req.user
        });
      });
