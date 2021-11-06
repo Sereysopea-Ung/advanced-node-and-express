@@ -19,6 +19,7 @@ const io = require('socket.io')(http);
 
 const auth = require('./auth.js');
 const routes = require('./routes.js');
+const { emit } = require('process');
 
 function onAuthorizeSuccess(data, accept) {
   console.log('successful connection to socket.io');
@@ -95,6 +96,12 @@ myDB(async client=>{
       connected: true
     });
     console.log('A user has connected');
+    socket.on('chat message', message=>{
+      io.emit('chat message', {
+        name: socket.request.user.name,
+        message
+      });
+    });
     
     socket.on('disconnect', ()=>{
       --currentUsers;
